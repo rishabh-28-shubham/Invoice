@@ -30,7 +30,7 @@ class Client(models.Model):
 
 
     def __str__(self):
-        return ''
+        return '{} {} {}'.format(self.clientName, self.province ,self.uniqueId)
     
 
     def get_absolute_url(self):
@@ -42,9 +42,9 @@ class Client(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split('=')[4]
-            self.slug = slugify('')
+            self.slug = slugify('{} {} {}'.format(self.clientName, self.province ,self.uniqueId))
 
-        self.slug = slugify('')
+        self.slug = slugify('{} {} {}'.format(self.clientName, self.province ,self.uniqueId))
         self.last_update = timezone.localtime(timezone.now())
 
         super(Client, self).save(*args, **kwargs)
