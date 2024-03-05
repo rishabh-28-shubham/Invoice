@@ -15,15 +15,15 @@ class Client(models.Model):
     ]
 
     #basic fileds
-    clientName = models.CharField(null=True, blank=True, max_lenght=200)
-    addressLine1 = models.CharField(null=True, blank=True, max_lenght=200)
+    clientName = models.CharField(null=True, blank=True, max_length=200)
+    addressLine1 = models.CharField(null=True, blank=True, max_length=200)
     province = models.CharField(choices=PROVINCES, blank=True, max_length=100)
-    postalCode =  models.CharField(null=True, blank=True, max_lenght=10)
-    phoneNumber =  models.CharField(null=True, blank=True, max_lenght=100)
-    emailAddress =  models.CharField(null=True, blank=True, max_lenght=100)
+    postalCode =  models.CharField(null=True, blank=True, max_length=10)
+    phoneNumber =  models.CharField(null=True, blank=True, max_length=100)
+    emailAddress =  models.CharField(null=True, blank=True, max_length=100)
 
     # Utility fields
-    uniqueId = models.CharField(null=True, blank=True, max_lenght=100)
+    uniqueId = models.CharField(null=True, blank=True, max_length=100)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_update = models.DateTimeField(blank=True, null=True)
