@@ -6,8 +6,21 @@ from django.contrib.auth.models import User
 
 # declaring a client models
 class Client(models.Model):
+
+    # Making PROVINCES
+    PROVINCES = [
+        ('Gauteng', 'Gauteng'),
+        ('Free State', 'Free State'),
+        ('Limpopo', 'Limpopo'),
+    ]
+
     #basic fileds
     clientName = models.CharField(null=True, blank=True, max_lenght=200)
+    addressLine1 = models.CharField(null=True, blank=True, max_lenght=200)
+    province = models.CharField(choices=PROVINCES, blank=True, max_length=100)
+    postalCode =  models.CharField(null=True, blank=True, max_lenght=10)
+    phoneNumber =  models.CharField(null=True, blank=True, max_lenght=100)
+    emailAddress =  models.CharField(null=True, blank=True, max_lenght=100)
 
     # Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_lenght=100)
