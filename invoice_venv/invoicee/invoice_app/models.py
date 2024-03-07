@@ -48,3 +48,49 @@ class Client(models.Model):
         self.last_update = timezone.localtime(timezone.now())
 
         super(Client, self).save(*args, **kwargs)
+
+
+
+# product & services model 
+class Product(models.Model):
+    CURRENCY = [
+        ('₹','INR'),
+        ('R','ZAR'),
+    ]
+
+    #basic fileds 
+    title = models.CharField(null=True, blank=True, max_length=100)
+    discription = models.TextField(null=True, blank=True)
+    quantity = models.FloatField(null=True, blank=True)
+    price = models.FloatField(null=True, blank=True)
+    currency = models.CharField(choices=CURRENCY, default ='₹', max_length=100)
+
+
+    #utility fields
+    uniqueId = models.CharField(null=True, blank=True, max_length=100)
+    slug = models.SlugField(max_length=500, unique=True,  blank=True, null=True)
+    date_created = models.DateTimeField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+
+
+    def __str__(self) -> str:
+        return '{} {}'.format(self.title, self.uniqueId)
+    
+    def get_absolute_rul(self):
+        return reverse('product-detail', kwargs={'slug': self.slug})
+    
+
+    def save(self, *args, **kwargs):
+        if self.date_created is None:
+            self.date_created = timezone.localtime(timezone.now())
+        if self.uniqueId is None:
+            self.uniqueId = str(uuid4()).split('-')[4]
+            self.slug = slugify('{} {}'.format(self.title, self.uniqueId))
+
+        
+        self.slug = slugify('{} {}'.format(self.title, self.uniqueId))
+        self.last_updated = timezone.localtime(timezone.now())
+
+        super(Product, self).save(*args,**kwargs)
+
+        
