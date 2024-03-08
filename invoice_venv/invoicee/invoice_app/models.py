@@ -154,7 +154,7 @@ class Invoice(models.Model):
 
 
 #settings model
-class Settings(models.Models):
+class Settings(models.Model):
 
     PROVINCES = [
         ('Gauteng', 'Gauteng'),
