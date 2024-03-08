@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import *
+
+# from .models import *
+# importing every model seperatly 
+from .models import Client, Product, Invoice, Settings
 
 
 # Register your models here.
